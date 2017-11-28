@@ -12,11 +12,16 @@ const Place = mongoose.model('Place');
 // since that's taken care of in app.js when
 // this routes file is loaded as middleware
 router.post('/places/create', (req, res) => {
-	  return {          
+			new Place({          
 				'name':req.body.name,
 				'cuisine':req.body.cuisine,
 				'location':req.body.location
-                }
+			}).save(function(err, places) {
+				if(err){
+          			console.log(err);
+				}
+       			res.json(places);
+   			});
 });
 
 router.get('/places', (req, res) => {

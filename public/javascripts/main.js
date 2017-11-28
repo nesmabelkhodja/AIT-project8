@@ -50,6 +50,49 @@ function main(){
 		req.send();
 	});
 
+	//adding restaurants
+	document.querySelector("#addBtn").addEventListener("click", function(evt){
+		evt.preventDefault();
+
+		//variables for name, location, and cuisine
+		let loc = document.getElementById('l').value;
+		let cuis = document.getElementById('c').value;
+		let name = document.getElementById('n').value;
+		console.log(cuis);
+
+		const url = 'http://localhost:3000/api/places/create';
+
+		const req = new XMLHttpRequest();
+		req.open('POST', url, true);
+		req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+		req.send('name='+name+'&location='+loc+'&cuisine='+cuis);
+
+		req.addEventListener('load', function() {
+		//when a response is retrieved, repopulate the table so that the new restaurant is added
+				let places = document.getElementById('places-list');
+                let row = document.createElement('tr');
+                let name1 =  row.appendChild(document.createElement('td'));
+                let cuisine =  row.appendChild(document.createElement('td'));
+                let location =  row.appendChild(document.createElement('td'));
+                //adding the data
+                let nContent = document.createTextNode(name); 
+                name1.appendChild(nContent);
+                let cContent = document.createTextNode(cuis); 
+                cuisine.appendChild(cContent);
+                let lContent = document.createTextNode(loc); 
+                location.appendChild(lContent);
+                
+                //adding row to final table
+                places.appendChild(row);
+		//if there was a filter set before adding, then clear the filter to show all restaurants, including the newly added one
+		});
+
+		//if error
+		req.addEventListener('error', function(e) {
+			document.body.appendChild(document.createTextNode('uh-oh, something went wrong ' + e));
+		});
+	});
+
 
 }
 
