@@ -1,4 +1,6 @@
 function main(){
+	//displaying all places on load
+	getPlaces('http://localhost:3000/api/places');
 
 	//filtering				
 	document.querySelector("#filterBtn").addEventListener("click", function(evt){
