@@ -34,9 +34,7 @@ router.get('/places', (req, res) => {
         	else{
             res.json(places.map(function(obj) {
                 return {          
-                    'name':obj.name,
-                    'cuisine':obj.cuisine,
-                    'location':obj.location
+                    'name':obj.name, 'cuisine':obj.cuisine, 'location':obj.location
                 }
             }));
         }
@@ -51,9 +49,7 @@ router.get('/places', (req, res) => {
         	else{
             res.json(places.map(function(obj) {
                 return {
-                	'name':obj.name,
-                	'cuisine':obj.cuisine,
-                	'location':obj.location
+                    'name':obj.name, 'cuisine':obj.cuisine, 'location':obj.location
                 }
             }));
         }
@@ -67,9 +63,7 @@ router.get('/places', (req, res) => {
         	else{
             res.json(places.map(function(obj) {
                 return {
-                	'name':obj.name,
-                	'cuisine':obj.cuisine,
-                	'location':obj.location
+                    'name':obj.name, 'cuisine':obj.cuisine, 'location':obj.location
                 }
             }));
         }
