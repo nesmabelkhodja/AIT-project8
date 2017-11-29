@@ -41,6 +41,20 @@ router.get('/places', (req, res) => {
         });
     }
     //if query is speficied
+     else if (((req.query.cuisine !== '' && req.query.cuisine !== undefined) && (req.query.location !== '' && req.query.location !== undefined))){
+        Place.find({'cuisine': req.query.cuisine, 'location': req.query.location}, function (err, places) {
+        	if (err){
+        		console.log(err);
+        	}
+        	else{
+            res.json(places.map(function(obj) {
+                return {
+                    'name':obj.name, 'cuisine':obj.cuisine, 'location':obj.location
+                }
+            }));
+        }
+        });
+    }
     else if (req.query.cuisine !== '' && req.query.cuisine !== undefined){
         Place.find({'cuisine': req.query.cuisine}, function (err, places) {
         	if (err){
